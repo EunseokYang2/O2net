@@ -313,7 +313,7 @@ def main(args):
         
         train_stats = train_one_epoch(
             model, criterion, args, data_loader_train_src, data_loader_train_tgt, optimizer, device, epoch, args.clip_max_norm)
-        print("loss_wasserstein ::{0} ".format(loss_dict["loss_wasserstein"]))
+        #print("loss_wasserstein ::{0} ".format(loss_dict["loss_wasserstein"]))
         lr_scheduler.step()
         if args.output_dir:
             checkpoint_paths = [output_dir / 'checkpoint.pth']
