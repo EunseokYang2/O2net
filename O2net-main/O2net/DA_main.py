@@ -69,13 +69,21 @@ def get_args_parser():
     parser.add_argument('--num_feature_levels', default=4, type=int, help='number of feature levels')
 
     # * Transformer
-    parser.add_argument('--enc_layers', default=6, type=int,
+    #parser.add_argument('--enc_layers', default=6, type=int,
+    #                    help="Number of encoding layers in the transformer")
+    parser.add_argument('--enc_layers', default=2, type=int,
                         help="Number of encoding layers in the transformer")
-    parser.add_argument('--dec_layers', default=6, type=int,
+    #parser.add_argument('--dec_layers', default=6, type=int,
+    #                    help="Number of decoding layers in the transformer")
+    parser.add_argument('--dec_layers', default=2, type=int,
                         help="Number of decoding layers in the transformer")
-    parser.add_argument('--dim_feedforward', default=1024, type=int,
+    #parser.add_argument('--dim_feedforward', default=1024, type=int,
+    #                    help="Intermediate size of the feedforward layers in the transformer blocks")
+    parser.add_argument('--dim_feedforward', default=256, type=int,
                         help="Intermediate size of the feedforward layers in the transformer blocks")
-    parser.add_argument('--hidden_dim', default=256, type=int,
+    #parser.add_argument('--hidden_dim', default=256, type=int,
+    #                    help="Size of the embeddings (dimension of the transformer)")
+    parser.add_argument('--hidden_dim', default=64, type=int,
                         help="Size of the embeddings (dimension of the transformer)")
     parser.add_argument('--dropout', default=0.1, type=float,
                         help="Dropout applied in the transformer")
@@ -311,9 +319,9 @@ def main(args):
             sampler_train_src.set_epoch(epoch)
             sampler_train_tgt.set_epoch(epoch)
         
-        train_stats = train_one_epoch(
+        train_stats, loss_wasserstein = train_one_epoch(
             model, criterion, args, data_loader_train_src, data_loader_train_tgt, optimizer, device, epoch, args.clip_max_norm)
-        #print("loss_wasserstein ::{0} ".format(loss_dict["loss_wasserstein"]))
+        print(loss_wasserstein)
         lr_scheduler.step()
         if args.output_dir:
             checkpoint_paths = [output_dir / 'checkpoint.pth']
