@@ -62,7 +62,7 @@ def swd(source_features, target_features, M=256):
 
 
 def l2_norm(source_features, target_features):
-    l2_norm = torch.sqrt(((source_features - target_features) ** 2).sum()) / 256 ** 2 # divide by square of feature dim
+    l2_norm = ((source_features - target_features) ** 2).sum() / 256 ** 2 # divide by square of feature dim
 
     return l2_norm
 
