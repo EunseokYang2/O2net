@@ -70,17 +70,13 @@ def get_args_parser():
 
     # * Transformer
     parser.add_argument('--enc_layers', default=6, type=int,
-                         help="Number of encoding layers in the transformer")
-   
+                        help="Number of encoding layers in the transformer")
     parser.add_argument('--dec_layers', default=6, type=int,
                         help="Number of decoding layers in the transformer")
-    
     parser.add_argument('--dim_feedforward', default=1024, type=int,
                         help="Intermediate size of the feedforward layers in the transformer blocks")
-    
     parser.add_argument('--hidden_dim', default=256, type=int,
                         help="Size of the embeddings (dimension of the transformer)")
-    
     parser.add_argument('--dropout', default=0.1, type=float,
                         help="Dropout applied in the transformer")
     parser.add_argument('--nheads', default=8, type=int,
