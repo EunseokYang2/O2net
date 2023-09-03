@@ -311,7 +311,7 @@ def main(args):
             sampler_train_src.set_epoch(epoch)
             sampler_train_tgt.set_epoch(epoch)
         
-        train_stats, a = train_one_epoch(
+        train_stats = train_one_epoch(
             model, criterion, args, data_loader_train_src, data_loader_train_tgt, optimizer, device, epoch, args.clip_max_norm)
         
         lr_scheduler.step()
